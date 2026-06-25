@@ -5,64 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>巷子深 · 铜锅涮肉 | 北京三代老店</title>
 <style>
-/* ============ CSS VARIABLES ============ */
-:root {
-  --bg: #000;
-  --gold-dark: #8c600a;
-  --gold-mid: #B67F30;
-  --gold: #D4AF37;
-  --gold-dim: rgba(140, 96, 10, 0.5);
-  --gold-ghost: rgba(140, 96, 10, 0.15);
-  --text-primary: #f5efe0;
-  --text-body: rgba(245, 239, 224, 0.55);
-  --text-muted: rgba(245, 239, 224, 0.3);
-  --line: 1.5px solid var(--gold-dark);
+/* ============ COTE-EXACT VARIABLES ============ */
+:root{
+  --bg:#000;
+  --gold-dark:#8c600a;
+  --gold-mid:#B67F30;
+  --gold:#D4AF37;
+  --text-cream:rgb(242,231,216);
+  --text-body:rgba(242,231,216,.7);
+  --text-muted:rgba(242,231,216,.4);
+  --gold-line:1px solid var(--gold-dark);
 }
-
-/* ============ RESET ============ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text-body);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
-  font-size:14.5px;
-  line-height:1.8;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+  font-size:14.5px;line-height:1.4;
   -webkit-font-smoothing:antialiased;
 }
 
-/* ============ NAVBAR ============ */
+/* ============ NAVBAR — 171px, sticky, no-stroke initially ============ */
 .navbar{
-  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  position:sticky;top:0;left:0;width:100%;z-index:1000;
+  height:171px;
   display:flex;justify-content:space-between;align-items:center;
-  padding:20px 40px;
-  transition:background .4s,border-bottom .4s;
+  padding:0 51px;
+  background:transparent;
+  border-bottom:0px solid transparent;
+  transition:background .4s,border-color .4s;
 }
 .navbar.scrolled{
-  background:#000;
-  border-bottom:1.5px solid var(--gold-mid);
+  background:var(--bg);
+  border-bottom:var(--gold-line);
 }
 .navbar .logo{
   font-size:22px;font-weight:700;color:var(--gold);
   letter-spacing:.15em;text-decoration:none;
   position:absolute;left:50%;transform:translateX(-50%);
 }
-.navbar .nav-links{display:flex;gap:28px}
-.navbar .nav-links a{
-  color:var(--text-body);text-decoration:none;font-size:12px;
-  letter-spacing:.15em;text-transform:uppercase;
-  transition:color .3s;
+.nav-links{display:flex;gap:32px}
+.nav-links a{
+  color:var(--text-body);text-decoration:none;font-size:13.6px;
+  letter-spacing:.08em;transition:color .3s;
 }
-.navbar .nav-links a:hover{color:var(--gold)}
-.navbar .btn-book{
+.nav-links a:hover{color:var(--gold)}
+.btn-book{
   border:1px solid var(--gold);color:var(--gold);
   padding:6px 18px;font-size:12px;letter-spacing:.12em;
   text-decoration:none;transition:all .35s;
 }
-.navbar .btn-book:hover{background:var(--gold);color:#000}
+.btn-book:hover{background:var(--gold);color:#000}
 
-/* ============ STROKE-BOTTOM (gold line between every section) ============ */
-.stroke-bottom{border-bottom:var(--line)}
+/* ============ STROKE-BOTTOM = 1px gold ============ */
+.stroke-bottom{border-bottom:var(--gold-line)}
+
+/* ============ SECTION INNER — 95px breathing room ============ */
+.section-inner{
+  padding:95.5px 51px;
+  max-width:1483px;
+}
 
 /* ============ SCROLL REVEAL ============ */
 .reveal{
@@ -73,162 +76,163 @@ body{
 
 /* ============ HERO ============ */
 .hero{
-  position:relative;min-height:100vh;display:flex;
-  align-items:center;justify-content:center;overflow:hidden;
-  border-bottom:var(--line);
+  position:relative;min-height:625px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
 }
 .hero-bg{
   position:absolute;inset:0;
   background:
-    radial-gradient(ellipse at 50% 35%, rgba(140,96,10,.08) 0%, transparent 70%),
-    radial-gradient(ellipse at 50% 60%, #1a1008 0%, #000 70%);
+    radial-gradient(ellipse at 50% 35%,rgba(140,96,10,.08) 0%,transparent 70%),
+    radial-gradient(ellipse at 50% 60%,#1a1008 0%,#000 70%);
 }
 .hero-bg::after{
   content:'';position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(140,96,10,.03) 3px,rgba(140,96,10,.03) 4px);
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(140,96,10,.03) 3px,rgba(140,96,10,.03) 4px);
   opacity:.4;
 }
-/* decorative circles */
 .hero-bg::before{
   content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:500px;height:500px;
-  border:1px solid rgba(140,96,10,.08);
-  border-radius:50%;
+  border:1px solid rgba(140,96,10,.08);border-radius:50%;
   box-shadow:0 0 0 120px rgba(140,96,10,.02),0 0 0 250px rgba(140,96,10,.01);
 }
 .hero-content{position:relative;text-align:center;z-index:2;padding:0 24px}
 .hero-tag{
-  display:inline-block;border:1px solid rgba(140,96,10,.3);
+  display:inline-block;
+  border:1px solid rgba(140,96,10,.3);
   padding:6px 20px;font-size:11px;letter-spacing:.25em;
   color:var(--gold);margin-bottom:36px;
 }
 .hero h1{
-  font-size:clamp(40px,7vw,72px);font-weight:700;
-  color:var(--text-primary);line-height:1.15;letter-spacing:.03em;
+  font-size:49px;font-weight:300;color:var(--text-cream);
+  line-height:1.1;letter-spacing:.02em;
 }
 .hero h1 em{
   display:block;font-style:normal;font-size:.4em;font-weight:400;
-  color:var(--text-body);letter-spacing:.12em;margin-top:14px;
+  color:var(--text-body);letter-spacing:.08em;margin-top:12px;
 }
 .hero-desc{
-  margin-top:32px;font-size:14px;line-height:2;
+  margin-top:32px;font-size:14.5px;line-height:1.4;
   max-width:480px;margin-inline:auto;color:var(--text-body);
 }
 .hero-cta{
-  margin-top:44px;display:inline-block;border:1px solid var(--gold);
-  color:var(--gold);padding:12px 36px;font-size:13px;
-  letter-spacing:.18em;text-decoration:none;transition:all .4s;
+  margin-top:44px;display:inline-block;
+  border:1px solid var(--gold);color:var(--gold);
+  padding:12px 36px;font-size:13px;letter-spacing:.18em;
+  text-decoration:none;transition:all .4s;
 }
 .hero-cta:hover{background:var(--gold);color:#000}
 
-/* ============ GOLD FRAME CARD (newsletter / form style) ============ */
+/* ============ GOLD-FRAME with corner ornaments ============ */
 .gold-frame{
-  border:1px solid rgba(140,96,10,.25);
-  padding:40px 48px;text-align:center;max-width:580px;margin:0 auto;
+  border:1px solid rgba(140,96,10,.2);
+  padding:38px 48px;text-align:center;max-width:580px;margin:0 auto;
   position:relative;
 }
 .gold-frame::before,.gold-frame::after{
   content:'';position:absolute;
-  width:16px;height:16px;
+  width:12px;height:12px;
   border-color:rgba(140,96,10,.35);
   border-style:solid;
 }
-.gold-frame::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
-.gold-frame::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
-.gold-frame p{font-size:13px;color:var(--text-body);margin-bottom:20px;line-height:1.7}
-.gold-frame .form-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.gold-frame input{
+.gold-frame::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.gold-frame::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+.gold-frame p{font-size:14.5px;color:var(--text-body);margin-bottom:18px;line-height:1.4}
+.form-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.form-row input{
   background:transparent;border:1px solid rgba(140,96,10,.2);
-  color:var(--text-primary);padding:10px 16px;font-size:13px;
-  min-width:200px;font-family:inherit;outline:none;
-  transition:border-color .3s;
+  color:var(--text-cream);padding:10px 16px;font-size:14.5px;
+  min-width:180px;font-family:inherit;outline:none;transition:border-color .3s;
 }
-.gold-frame input:focus{border-color:var(--gold)}
-.gold-frame input::placeholder{color:var(--text-muted)}
-.gold-frame .btn-gold{
-  background:transparent;border:1px solid var(--gold);
-  color:var(--gold);padding:10px 24px;font-size:12px;
-  letter-spacing:.15em;cursor:pointer;font-family:inherit;
-  transition:all .35s;
+.form-row input:focus{border-color:var(--gold)}
+.form-row input::placeholder{color:var(--text-muted)}
+.btn-gold{
+  background:transparent;border:1px solid var(--gold-dark);
+  color:var(--text-cream);padding:12px 24px;font-size:14.5px;
+  letter-spacing:.08em;cursor:pointer;font-family:inherit;transition:all .35s;
 }
-.gold-frame .btn-gold:hover{background:var(--gold);color:#000}
+.btn-gold:hover{background:var(--gold);color:#000}
 
-/* ============ SECTIONS ============ */
-section{padding:100px 40px}
-
-/* BRAND STORY */
+/* ============ BRAND STORY ============ */
 .brand-story{text-align:center}
-.brand-story .overline{
-  color:var(--gold);font-size:11px;letter-spacing:.25em;margin-bottom:32px;
-}
-.brand-story .ornament{
-  display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px;
-  color:var(--gold-mid);font-size:11px;letter-spacing:.2em;
-}
-.brand-story .ornament::before,.brand-story .ornament::after{
-  content:'';width:36px;height:1px;background:rgba(140,96,10,.3);
-}
 .brand-story h2{
-  font-size:clamp(24px,3.5vw,36px);font-weight:700;
-  color:var(--text-primary);line-height:1.4;margin-bottom:20px;
+  font-size:35.8px;font-weight:300;color:var(--text-cream);
+  line-height:1.1;margin-bottom:20px;
 }
-.brand-story p{
-  max-width:600px;margin:0 auto;font-size:14px;line-height:2.1;
+.brand-story .about-text{
+  max-width:660px;margin:0 auto;font-size:14.5px;line-height:1.4;
   color:var(--text-body);
 }
 
-/* EQUATION BOX */
+/* Ornate mantra box — gold frame with corner decorations */
+.mantra-box{
+  display:inline-flex;flex-direction:column;align-items:center;gap:24px;
+  border:1px solid rgba(140,96,10,.25);
+  padding:28px 48px;margin-top:36px;
+  position:relative;text-align:center;
+}
+.mantra-box::before,.mantra-box::after{
+  content:'';position:absolute;
+  width:14px;height:14px;
+  border-color:rgba(140,96,10,.4);
+  border-style:solid;
+}
+.mantra-box::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.mantra-box::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+.mantra-box .mantra-label{
+  font-size:12px;color:var(--gold-mid);letter-spacing:.15em;
+}
 .equation{
   display:inline-flex;align-items:center;gap:16px;
-  border:1px solid rgba(140,96,10,.25);
-  padding:14px 36px;margin-top:32px;
-  font-size:18px;color:var(--text-primary);
+  font-size:20px;color:var(--text-cream);font-weight:300;
 }
 .equation .plus{color:var(--gold);font-weight:300}
 
-/* LOCATION CARDS */
-.location-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:0;max-width:960px;margin:48px auto 0;
+/* ============ LOCATION CARDS — no borders, large padding ============ */
+.location-row{
+  display:flex;justify-content:space-between;gap:0;
+  padding:48.6px 0;
 }
 .loc-card{
-  position:relative;text-align:center;padding:48px 28px;
+  flex:1;text-align:center;padding:48.6px 51.2px;
   text-decoration:none;color:inherit;display:block;
-  border-right:1px solid rgba(140,96,10,.15);
-  transition:background .4s;
+  position:relative;transition:background .4s;
 }
-.loc-card:last-child{border-right:none}
 .loc-card:hover{background:rgba(140,96,10,.04)}
-
-/* HOVER STROKE GRADIENT */
 .loc-card .stroke-glow{
   position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,var(--gold-dim),transparent 40%,transparent 60%,var(--gold-dim));
+  background:linear-gradient(90deg,rgba(140,96,10,.4),transparent 40%,transparent 60%,rgba(140,96,10,.4));
   opacity:0;transition:opacity .5s;z-index:2;
 }
 .loc-card:hover .stroke-glow{opacity:1}
-.loc-card h4{font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:10px}
-.loc-card .en{font-size:11px;color:var(--text-muted);letter-spacing:.12em;margin-bottom:14px;display:block}
-.loc-card p{font-size:13px;color:var(--text-body);line-height:1.9}
-.loc-card::after{
-  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:0;height:1px;background:var(--gold);transition:width .5s;
+.loc-card h4{
+  font-size:20px;font-weight:300;color:var(--text-cream);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;
 }
-.loc-card:hover::after{width:60px}
+.loc-card .en{font-size:11px;color:var(--text-muted);letter-spacing:.12em;margin-bottom:10px;display:block}
+.loc-card p{font-size:14.5px;color:var(--text-body);line-height:1.4}
 
-/* WHAT'S HOT CAROUSEL */
-.whats-hot .section-label{text-align:center;margin-bottom:8px}
-.whats-hot h3{text-align:center;font-size:13px;color:var(--text-muted);font-weight:400;margin-bottom:40px;letter-spacing:.1em}
-.carousel{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(140,96,10,.08);max-width:960px;margin:0 auto}
+/* ============ WHAT'S NEW CAROUSEL ============ */
+.whats-new{text-align:center}
+.whats-new .section-label{
+  color:var(--gold-mid);font-size:11px;letter-spacing:.18em;margin-bottom:8px;
+}
+.whats-new .carousel-subtitle{
+  font-size:14.5px;color:var(--text-body);font-weight:300;
+  margin-bottom:48px;line-height:1.4;
+}
+.carousel{
+  display:flex;gap:0;justify-content:center;align-items:stretch;
+  max-width:1200px;margin:0 auto;position:relative;
+}
 .carousel-card{
-  background:#000;padding:0 0 24px;text-align:center;position:relative;overflow:hidden;
+  flex:1;background:#000;padding:0 0 32px;text-align:center;
+  position:relative;overflow:hidden;
 }
 .carousel-card .img-placeholder{
-  height:200px;background:
-    linear-gradient(160deg,rgba(140,96,10,.12) 0%,rgba(140,96,10,.04) 40%,#000 100%);
-  margin-bottom:20px;position:relative;overflow:hidden;
-  border-bottom:1px solid rgba(140,96,10,.15);
+  height:260px;margin-bottom:24px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(140,96,10,.1) 0%,rgba(140,96,10,.03) 40%,#000 100%);
 }
 .carousel-card .img-placeholder .shine{
   position:absolute;top:0;left:-100%;width:50%;height:100%;
@@ -240,111 +244,138 @@ section{padding:100px 40px}
   display:inline-block;border:1px solid rgba(140,96,10,.25);
   padding:3px 14px;font-size:10px;letter-spacing:.15em;color:var(--gold-mid);margin-bottom:12px;
 }
-.carousel-card h4{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:6px}
-.carousel-card .sub{font-size:11px;color:var(--text-muted)}
+.carousel-card h4{font-size:18px;font-weight:300;color:var(--text-cream);margin-bottom:6px}
+.carousel-card .sub{font-size:13px;color:var(--text-muted);line-height:1.4}
 
-/* EXPERIENCE TABS (100vh) */
-.experience{
-  min-height:100vh;display:flex;align-items:center;position:relative;
+/* ============ EXPERIENCE — ornate gold frame ============ */
+.experience-frame{
+  border:1px solid rgba(140,96,10,.2);
+  position:relative;padding:60px 48px;
+  max-width:1100px;margin:0 auto;
 }
-.exp-inner{display:flex;width:100%;max-width:1100px;margin:0 auto;gap:0;align-items:center}
-.exp-tabs{flex:0 0 200px;display:flex;flex-direction:column;gap:0}
+/* Corner decorations */
+.experience-frame::before,.experience-frame::after{
+  content:'';position:absolute;
+  width:18px;height:18px;
+  border-color:rgba(140,96,10,.35);
+  border-style:solid;
+}
+.experience-frame::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.experience-frame::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+/* Secondary corners */
+.experience-frame .exp-corner-tl,.experience-frame .exp-corner-br{
+  position:absolute;
+  width:8px;height:8px;
+  border-color:rgba(140,96,10,.2);
+  border-style:solid;
+}
+.experience-frame .exp-corner-tl{top:8px;left:8px;border-width:1px 0 0 1px}
+.experience-frame .exp-corner-br{bottom:8px;right:8px;border-width:0 1px 1px 0}
+
+.exp-inner{display:flex;width:100%;gap:60px;align-items:flex-start}
+.exp-tabs{flex:0 0 180px;display:flex;flex-direction:column;gap:8px}
 .exp-tab{
-  background:none;border:none;color:var(--text-muted);
-  font-size:14px;letter-spacing:.12em;padding:16px 0;cursor:pointer;
-  text-align:left;font-family:inherit;transition:color .3s;
-  border-bottom:1px solid rgba(140,96,10,.1);
+  background:#fff;border:1px solid var(--gold-dark);
+  color:var(--gold-dark);font-size:14px;letter-spacing:.08em;
+  padding:14px 20px;cursor:pointer;text-align:center;
+  font-family:inherit;transition:all .3s;border-radius:4px;
   position:relative;
 }
-.exp-tab:hover{color:var(--text-body)}
-.exp-tab.active{color:var(--gold)}
-.exp-tab.active::after{
-  content:'';position:absolute;bottom:-1px;left:0;width:100%;height:1.5px;
-  background:var(--gold);
+.exp-tab:hover{background:rgba(140,96,10,.05)}
+.exp-tab.active{
+  background:var(--gold-dark);color:#fff;
 }
-.exp-content{flex:1;padding-left:80px}
+.exp-tab.active::after{
+  content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);
+  width:6px;height:6px;background:var(--gold);border-radius:50%;
+}
+.exp-content{flex:1;min-height:380px}
 .exp-panel{display:none}
 .exp-panel.active{display:block}
 .exp-panel .exp-img{
-  width:100%;height:400px;margin-bottom:24px;position:relative;overflow:hidden;
+  width:100%;height:320px;margin-bottom:20px;position:relative;overflow:hidden;
   background:linear-gradient(160deg,#0d0a06 0%,#000 100%);
-  border:1px solid rgba(140,96,10,.1);
+  border:1px solid rgba(140,96,10,.08);
   display:flex;align-items:center;justify-content:center;
 }
-.exp-panel .exp-img .img-text{
-  font-size:48px;color:rgba(140,96,10,.08);
+.exp-panel .exp-img .img-text{font-size:48px;color:rgba(140,96,10,.06)}
+.exp-panel h4{
+  font-size:24px;font-weight:300;color:var(--text-cream);
+  margin-bottom:10px;line-height:1.3;
 }
-.exp-panel .exp-text{
-  max-width:520px;
-}
-.exp-panel h4{font-size:22px;font-weight:700;color:var(--text-primary);margin-bottom:12px}
-.exp-panel p{font-size:14px;color:var(--text-body);line-height:2.1}
+.exp-panel p{font-size:14.5px;color:var(--text-body);line-height:1.4}
 
-/* PRESS CARDS */
-.press h2{text-align:center;font-size:13px;color:var(--text-muted);font-weight:400;letter-spacing:.2em;margin-bottom:40px}
+/* ============ PRESS — white cards, 2 columns ============ */
+.press{text-align:center}
+.press .section-label{
+  color:var(--text-muted);font-size:11px;letter-spacing:.25em;margin-bottom:36px;
+}
 .press-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:rgba(140,96,10,.08);max-width:960px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:rgba(140,96,10,.1);max-width:960px;margin:0 auto;
 }
 .press-card{
-  background:#000;padding:36px 28px;text-align:center;position:relative;
-  border:1px solid transparent;transition:border-color .4s;
+  background:#fff;padding:36px 32px;text-align:left;position:relative;
+  transition:transform .3s;
 }
-.press-card:hover{border-color:rgba(140,96,10,.2)}
+.press-card:hover{transform:translateY(-2px)}
 .press-card .pub{
-  font-size:11px;color:var(--gold-mid);letter-spacing:.15em;margin-bottom:12px;
+  font-size:12px;color:var(--gold-dark);letter-spacing:.1em;margin-bottom:10px;
 }
 .press-card q{
-  font-size:14px;color:var(--text-body);line-height:1.8;display:block;
-  font-style:italic;
+  font-size:15px;color:#111;line-height:1.5;display:block;font-style:italic;
 }
 
-/* CTA STRIP */
+/* ============ CTA STRIP ============ */
 .cta-strip{text-align:center}
 .cta-strip h2{
-  font-size:clamp(24px,3.5vw,36px);font-weight:700;
-  color:var(--text-primary);margin-bottom:12px;
+  font-size:35.8px;font-weight:300;color:var(--text-cream);
+  line-height:1.1;margin-bottom:12px;
 }
-.cta-strip p{color:var(--text-body);font-size:13px;margin-bottom:32px}
-.cta-strip .btn-gold{
-  display:inline-block;border:1px solid var(--gold);
-  color:var(--gold);padding:14px 40px;font-size:13px;
-  letter-spacing:.18em;text-decoration:none;transition:all .4s;
-}
-.cta-strip .btn-gold:hover{background:var(--gold);color:#000}
+.cta-strip p{color:var(--text-body);font-size:14.5px;margin-bottom:32px;line-height:1.4}
 
-/* FOOTER */
-footer{
-  padding:60px 40px;display:grid;grid-template-columns:repeat(3,1fr);
-  gap:40px;max-width:960px;margin:0 auto;
+/* ============ FOOTER — multi-column ============ */
+footer .section-inner{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:48px;
 }
-footer h5{font-size:12px;color:var(--text-muted);letter-spacing:.12em;margin-bottom:16px;font-weight:400}
-footer a,footer p{font-size:12px;color:var(--text-body);text-decoration:none;display:block;margin-bottom:6px;line-height:2}
+.footer-brand{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:8px;letter-spacing:.12em}
+.footer-tagline{font-size:14.5px;color:var(--text-muted);margin-bottom:16px;line-height:1.4}
+footer h5{font-size:14.5px;color:var(--text-cream);letter-spacing:.08em;margin-bottom:16px;font-weight:400}
+footer a,footer p{
+  font-size:14.5px;color:var(--text-body);text-decoration:none;
+  display:block;margin-bottom:8px;line-height:1.4;transition:color .3s;
+}
 footer a:hover{color:var(--gold)}
-footer .footer-brand{font-size:20px;font-weight:700;color:var(--gold);margin-bottom:8px;letter-spacing:.12em}
+.copyright{
+  margin-top:48px;padding-top:32px;border-top:var(--gold-line);
+  text-align:center;font-size:13px;color:var(--text-muted);
+}
 
+/* ============ MOBILE ============ */
 @media(max-width:768px){
-  .navbar{padding:16px 20px}
-  .navbar .logo{position:static;transform:none}
-  .navbar .nav-links{display:none}
-  .location-grid,.carousel,.press-grid{grid-template-columns:1fr}
-  .loc-card{border-right:none;border-bottom:1px solid rgba(140,96,10,.15)}
-  .loc-card:last-child{border-bottom:none}
-  .exp-inner{flex-direction:column}
-  .exp-tabs{flex:auto;flex-direction:row;gap:0;overflow-x:auto}
-  .exp-tab{border-bottom:none;border-right:1px solid rgba(140,96,10,.1);padding:12px 16px;white-space:nowrap}
-  .exp-tab.active::after{width:100%;height:1.5px;bottom:0;left:0}
-  .exp-content{padding-left:0;padding-top:32px}
-  footer{grid-template-columns:1fr;text-align:center}
-  .gold-frame{padding:28px 24px}
-  .gold-frame .form-row{flex-direction:column}
-  section{padding:64px 20px}
+  .navbar{height:100px;padding:0 20px}
+  .nav-links{display:none}
+  .navbar .logo{position:static;transform:none;font-size:18px}
+  .section-inner{padding:48px 20px}
+  .hero h1{font-size:32px}
+  .location-row{flex-direction:column;padding:24px 0}
+  .loc-card{padding:32px 24px}
+  .carousel{flex-direction:column;gap:0}
+  .exp-inner{flex-direction:column;gap:24px}
+  .exp-tabs{flex:auto;flex-direction:row;flex-wrap:wrap;gap:6px;overflow-x:auto}
+  .exp-tab{padding:10px 16px;font-size:13px}
+  .experience-frame{padding:32px 20px}
+  .press-grid{grid-template-columns:1fr}
+  footer .section-inner{grid-template-columns:1fr;text-align:center;gap:32px}
+  .brand-story h2,.cta-strip h2{font-size:28px}
+  .mantra-box{padding:20px 28px}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- ===== NAVBAR — 171px, sticky, no-stroke initially ===== -->
 <nav class="navbar" id="navbar">
   <div class="nav-links">
     <a href="#story">故事</a>
@@ -355,7 +386,7 @@ footer .footer-brand{font-size:20px;font-weight:700;color:var(--gold);margin-bot
   <a href="#book" class="btn-book">订位</a>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ===== 1. HERO (min-height 625px) ===== -->
 <section class="hero stroke-bottom">
   <div class="hero-bg"></div>
   <div class="hero-content reveal">
@@ -366,201 +397,216 @@ footer .footer-brand{font-size:20px;font-weight:700;color:var(--gold);margin-bot
   </div>
 </section>
 
-<!-- ===== NEWSLETTER-STYLE BOOKING ===== -->
+<!-- ===== 2. NEWSLETTER (compact, 245px feel) ===== -->
 <section class="stroke-bottom">
-  <div class="gold-frame reveal">
-    <p>想知道今天的羊肉卖到几点？留下电话，每天下午五点告诉你还剩几盘。</p>
-    <div class="form-row">
-      <input type="tel" placeholder="手机号">
-      <input type="text" placeholder="几个人">
-      <button class="btn-gold">收到提醒</button>
+  <div class="section-inner">
+    <div class="gold-frame reveal">
+      <p>想知道今天的羊肉卖到几点？留下电话，每天下午五点告诉你还剩几盘。</p>
+      <div class="form-row">
+        <input type="tel" placeholder="手机号">
+        <input type="text" placeholder="几个人">
+        <button class="btn-gold">收到提醒</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== BRAND STORY ===== -->
-<section class="brand-story stroke-bottom" id="story">
-  <div class="ornament reveal">我们的坚持</div>
-  <h2 class="reveal">北京四九城里，为数不多还在用真炭火的铜锅店</h2>
-  <p class="reveal">不连锁，不融资，不开分店。老李一家三代守着这一口锅。父亲切肉，儿子掌火，儿媳妇调麻酱。没什么特别的——无非是别人用机器切的肉，我们用手切；别人放味精的汤底，我们用羊骨慢慢熬。</p>
-  <!-- EQUATION -->
-  <div class="equation reveal">
-    <span>🔥 炭火</span><span class="plus">+</span>
-    <span>🫕 紫铜锅</span><span class="plus">+</span>
-    <span>🥩 手切鲜羊</span><span class="plus">=</span>
-    <span>😌</span>
+<!-- ===== 3. BRAND STORY + MANTRA BOX ===== -->
+<section class="stroke-bottom" id="story">
+  <div class="section-inner brand-story">
+    <h2 class="reveal">北京四九城里，为数不多还在用真炭火的铜锅店</h2>
+    <p class="about-text reveal">不连锁，不融资，不开分店。老李一家三代守着这一口锅。父亲切肉，儿子掌火，儿媳妇调麻酱。没什么特别的——无非是别人用机器切的肉，我们用手切；别人放味精的汤底，我们用羊骨慢慢熬。</p>
+    <!-- Ornate mantra box -->
+    <div class="mantra-box reveal">
+      <span class="mantra-label">我们的配方</span>
+      <div class="equation">
+        <span>🔥 炭火</span><span class="plus">+</span>
+        <span>🫕 紫铜锅</span><span class="plus">+</span>
+        <span>🥩 手切鲜羊</span><span class="plus">=</span>
+        <span>😌</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ===== LOCATION CARDS (with hover stroke glow) ===== -->
+<!-- ===== 4. LOCATION CARDS — no borders, horizontal row ===== -->
 <section class="stroke-bottom" id="locations">
-  <div class="location-grid">
-    <a href="#" class="loc-card reveal">
-      <div class="stroke-glow"></div>
-      <h4>📍 总店</h4>
-      <span class="en">Original</span>
-      <p>东城区 · 南锣鼓巷<br>板厂胡同 17 号</p>
-    </a>
-    <a href="#" class="loc-card reveal" style="transition-delay:.15s">
-      <div class="stroke-glow"></div>
-      <h4>🕐 营业时间</h4>
-      <span class="en">Hours</span>
-      <p>周一至五 17:00–23:00<br>周六日 11:30–23:00</p>
-    </a>
-    <a href="#" class="loc-card reveal" style="transition-delay:.3s">
-      <div class="stroke-glow"></div>
-      <h4>☎️ 订位电话</h4>
-      <span class="en">Reservations</span>
-      <p>010-8402-7788<br>八人以上包间需提前一天</p>
-    </a>
-  </div>
-</section>
-
-<!-- ===== WHAT'S HOT ===== -->
-<section class="whats-hot stroke-bottom" id="menu">
-  <div class="section-label reveal"><span style="color:var(--gold);font-size:11px;letter-spacing:.25em">当季限定</span></div>
-  <h3 class="reveal">吃了几十年的老客，就为这几样来</h3>
-  <div class="carousel">
-    <div class="carousel-card reveal">
-      <div class="img-placeholder"><div class="shine"></div></div>
-      <span class="tag">限量</span>
-      <h4>手切鲜羊后腿</h4>
-      <p class="sub">立盘不倒 · 每天三十盘</p>
-    </div>
-    <div class="carousel-card reveal" style="transition-delay:.1s">
-      <div class="img-placeholder"><div class="shine"></div></div>
-      <span class="tag">招牌</span>
-      <h4>老北京爆肚</h4>
-      <p class="sub">七上八下十三秒</p>
-    </div>
-    <div class="carousel-card reveal" style="transition-delay:.2s">
-      <div class="img-placeholder"><div class="shine"></div></div>
-      <span class="tag">自制</span>
-      <h4>老坛酸菜</h4>
-      <p class="sub">每年入冬腌三十缸</p>
+  <div class="section-inner">
+    <div class="location-row">
+      <a href="#" class="loc-card reveal">
+        <div class="stroke-glow"></div>
+        <h4>总 店</h4>
+        <span class="en">Original</span>
+        <p>东城区 · 南锣鼓巷<br>板厂胡同 17 号</p>
+      </a>
+      <a href="#" class="loc-card reveal" style="transition-delay:.15s">
+        <div class="stroke-glow"></div>
+        <h4>营业时间</h4>
+        <span class="en">Hours</span>
+        <p>周一至五 17:00–23:00<br>周六日 11:30–23:00</p>
+      </a>
+      <a href="#" class="loc-card reveal" style="transition-delay:.3s">
+        <div class="stroke-glow"></div>
+        <h4>订位电话</h4>
+        <span class="en">Reservations</span>
+        <p>010-8402-7788<br>八人以上包间需提前一天</p>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===== EXPERIENCE TABS (100vh) ===== -->
-<section class="experience stroke-bottom reveal">
-  <div class="exp-inner">
-    <div class="exp-tabs">
-      <button class="exp-tab active" onclick="switchExp(0)">识肉</button>
-      <button class="exp-tab" onclick="switchExp(1)">识火</button>
-      <button class="exp-tab" onclick="switchExp(2)">识酱</button>
-      <button class="exp-tab" onclick="switchExp(3)">识人</button>
-    </div>
-    <div class="exp-content">
-      <div class="exp-panel active">
-        <div class="exp-img"><span class="img-text">🥩</span></div>
-        <div class="exp-text">
-          <h4>好羊肉不用腌</h4>
-          <p>切出来是粉红色的，在盘子里能立住。下锅涮八秒，捞起来直接吃——你能尝到肉本身的甜味。不是那种冻了三个月的进口货。本地山羊，当天宰当天到，你吃的每一口都记得它从哪里来。</p>
-        </div>
+<!-- ===== 5. WHAT'S NEW CAROUSEL ===== -->
+<section class="stroke-bottom" id="menu">
+  <div class="section-inner whats-new">
+    <div class="section-label reveal">当季限定</div>
+    <p class="carousel-subtitle reveal">吃了几十年的老客，就为这几样来</p>
+    <div class="carousel">
+      <div class="carousel-card reveal">
+        <div class="img-placeholder"><div class="shine"></div></div>
+        <span class="tag">限量</span>
+        <h4>手切鲜羊后腿</h4>
+        <p class="sub">立盘不倒 · 每天三十盘</p>
       </div>
-      <div class="exp-panel">
-        <div class="exp-img"><span class="img-text">🔥</span></div>
-        <div class="exp-text">
-          <h4>炭火的温度，电磁炉比不了</h4>
-          <p>火苗蹿起来的那一下，锅底开始咕嘟咕嘟翻滚——那股焦香味，你在任何电炉子上都吃不到。老李每天早上五点起来生炭，三十八年没断过。他说炭火是有灵气的，火候到了，肉才听话。</p>
-        </div>
+      <div class="carousel-card reveal" style="transition-delay:.1s">
+        <div class="img-placeholder"><div class="shine"></div></div>
+        <span class="tag">招牌</span>
+        <h4>老北京爆肚</h4>
+        <p class="sub">七上八下十三秒</p>
       </div>
-      <div class="exp-panel">
-        <div class="exp-img"><span class="img-text">🫙</span></div>
-        <div class="exp-text">
-          <h4>二八酱是魂</h4>
-          <p>二分芝麻酱，八分花生酱。用羊汤调开，顺时针搅一百零八圈。韭菜花是自己发的，腐乳汁是自己酿的。有人专门来店里不是为了吃肉——就为了蘸这一碟酱。</p>
-        </div>
-      </div>
-      <div class="exp-panel">
-        <div class="exp-img"><span class="img-text">👴</span></div>
-        <div class="exp-text">
-          <h4>老李今年六十三</h4>
-          <p>每天五点生火，晚上十一点等最后一个客人走了才关门。你问他为什么还干，他说："不干了这些老客人去哪里吃？"来的人他基本都认识。谁爱吃肥的谁爱吃瘦的，他比你自己还清楚。这不是服务——是三十八年的交情。</p>
-        </div>
+      <div class="carousel-card reveal" style="transition-delay:.2s">
+        <div class="img-placeholder"><div class="shine"></div></div>
+        <span class="tag">自制</span>
+        <h4>老坛酸菜</h4>
+        <p class="sub">每年入冬腌三十缸</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== PRESS CARDS ===== -->
-<section class="press stroke-bottom">
-  <h2 class="reveal">媒体评价</h2>
-  <div class="press-grid">
-    <div class="press-card reveal">
-      <div class="pub">Timeout Beijing</div>
-      <q>北京最被低估的铜锅涮肉——没有之一。</q>
-    </div>
-    <div class="press-card reveal" style="transition-delay:.1s">
-      <div class="pub">大众点评 · 必吃榜</div>
-      <q>连续七年上榜。南锣鼓巷唯一不用排队的传奇老店。</q>
-    </div>
-    <div class="press-card reveal" style="transition-delay:.2s">
-      <div class="pub">三联生活周刊</div>
-      <q>三代人的手艺，都在那一锅滚汤里。</q>
-    </div>
-    <div class="press-card reveal">
-      <div class="pub">日食记</div>
-      <q>朋友带来吃的，吃完我给老李鞠了一躬。</q>
-    </div>
-    <div class="press-card reveal" style="transition-delay:.1s">
-      <div class="pub">老饭骨</div>
-      <q>北京涮羊肉圈里，提起'老李'没有人不竖大拇指。</q>
-    </div>
-    <div class="press-card reveal" style="transition-delay:.2s">
-      <div class="pub">孤独星球</div>
-      <q>A hidden gem. No English menu — let the chef decide.</q>
+<!-- ===== 6. EXPERIENCE — ornate gold frame + white tab buttons ===== -->
+<section class="stroke-bottom">
+  <div class="section-inner">
+    <div class="experience-frame reveal">
+      <span class="exp-corner-tl"></span>
+      <span class="exp-corner-br"></span>
+      <div class="exp-inner">
+        <div class="exp-tabs">
+          <button class="exp-tab active" onclick="switchExp(0)">识肉</button>
+          <button class="exp-tab" onclick="switchExp(1)">识火</button>
+          <button class="exp-tab" onclick="switchExp(2)">识酱</button>
+          <button class="exp-tab" onclick="switchExp(3)">识人</button>
+        </div>
+        <div class="exp-content">
+          <div class="exp-panel active">
+            <div class="exp-img"><span class="img-text">🥩</span></div>
+            <h4>好羊肉不用腌</h4>
+            <p>切出来是粉红色的，在盘子里能立住。下锅涮八秒，捞起来直接吃——你能尝到肉本身的甜味。不是那种冻了三个月的进口货。本地山羊，当天宰当天到，你吃的每一口都记得它从哪里来。</p>
+          </div>
+          <div class="exp-panel">
+            <div class="exp-img"><span class="img-text">🔥</span></div>
+            <h4>炭火的温度，电磁炉比不了</h4>
+            <p>火苗蹿起来的那一下，锅底开始咕嘟咕嘟翻滚——那股焦香味，你在任何电炉子上都吃不到。老李每天早上五点起来生炭，三十八年没断过。他说炭火是有灵气的，火候到了，肉才听话。</p>
+          </div>
+          <div class="exp-panel">
+            <div class="exp-img"><span class="img-text">🫙</span></div>
+            <h4>二八酱是魂</h4>
+            <p>二分芝麻酱，八分花生酱。用羊汤调开，顺时针搅一百零八圈。韭菜花是自己发的，腐乳汁是自己酿的。有人专门来店里不是为了吃肉——就为了蘸这一碟酱。</p>
+          </div>
+          <div class="exp-panel">
+            <div class="exp-img"><span class="img-text">👴</span></div>
+            <h4>老李今年六十三</h4>
+            <p>每天五点生火，晚上十一点等最后一个客人走了才关门。你问他为什么还干，他说："不干了这些老客人去哪里吃？"来的人他基本都认识。谁爱吃肥的谁爱吃瘦的，他比你自己还清楚。这不是服务——是三十八年的交情。</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA STRIP ===== -->
-<section class="cta-strip stroke-bottom reveal" id="book">
-  <h2>今晚的锅底已经滚上了</h2>
-  <p>提前打电话，给你留最好的那盘手切。来了报手机尾号就行。</p>
-  <a href="tel:01084027788" class="btn-gold">☎ 马上订位</a>
+<!-- ===== 7. PRESS — white cards, 2 columns ===== -->
+<section class="stroke-bottom">
+  <div class="section-inner press">
+    <div class="section-label reveal">媒体评价</div>
+    <div class="press-grid">
+      <div class="press-card reveal">
+        <div class="pub">Timeout Beijing</div>
+        <q>北京最被低估的铜锅涮肉——没有之一。</q>
+      </div>
+      <div class="press-card reveal" style="transition-delay:.1s">
+        <div class="pub">大众点评 · 必吃榜</div>
+        <q>连续七年上榜。南锣鼓巷唯一不用排队的传奇老店。</q>
+      </div>
+      <div class="press-card reveal" style="transition-delay:.15s">
+        <div class="pub">三联生活周刊</div>
+        <q>三代人的手艺，都在那一锅滚汤里。</q>
+      </div>
+      <div class="press-card reveal" style="transition-delay:.2s">
+        <div class="pub">日食记</div>
+        <q>朋友带来吃的，吃完我给老李鞠了一躬。</q>
+      </div>
+      <div class="press-card reveal" style="transition-delay:.25s">
+        <div class="pub">老饭骨</div>
+        <q>北京涮羊肉圈里，提起"老李"没有人不竖大拇指。</q>
+      </div>
+      <div class="press-card reveal" style="transition-delay:.3s">
+        <div class="pub">孤独星球</div>
+        <q>A hidden gem. No English menu — let the chef decide.</q>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ===== 8. CTA STRIP ===== -->
+<section class="stroke-bottom" id="book">
+  <div class="section-inner cta-strip">
+    <h2 class="reveal">今晚的锅底已经滚上了</h2>
+    <p class="reveal">提前打电话，给你留最好的那盘手切。来了报手机尾号就行。</p>
+    <a href="tel:01084027788" class="btn-gold reveal">☎ 马上订位</a>
+  </div>
+</section>
+
+<!-- ===== 9. FOOTER ===== -->
 <footer class="stroke-bottom">
-  <div>
-    <div class="footer-brand">巷子深</div>
-    <p>三代人的老味道 · 始于 1986</p>
-  </div>
-  <div>
-    <h5>导航</h5>
-    <a href="#story">我们的故事</a>
-    <a href="#menu">招牌菜</a>
-    <a href="#book">订位</a>
-  </div>
-  <div>
-    <h5>联系我们</h5>
-    <p>010-8402-7788</p>
-    <p>东城区南锣鼓巷板厂胡同 17 号</p>
-    <p>周二店休</p>
+  <div class="section-inner">
+    <div>
+      <div class="footer-brand">巷子深</div>
+      <p class="footer-tagline">三代人的老味道<br>始于 1986</p>
+    </div>
+    <div>
+      <h5>导航</h5>
+      <a href="#story">我们的故事</a>
+      <a href="#menu">招牌菜</a>
+      <a href="#book">订位</a>
+    </div>
+    <div>
+      <h5>门店</h5>
+      <p>总店：东城区南锣鼓巷<br>板厂胡同 17 号</p>
+    </div>
+    <div>
+      <h5>联系</h5>
+      <p>010-8402-7788</p>
+      <p>周二店休</p>
+    </div>
   </div>
 </footer>
 
 <script>
-/* ===== NAVBAR SCROLL ===== */
+/* NAVBAR SCROLL — 1px gold line on scroll */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-}, {passive: true});
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
 
-/* ===== SCROLL REVEAL ===== */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting) e.target.classList.add('visible');
-  });
-}, {threshold: 0.15, rootMargin: '0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* SCROLL REVEAL */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-/* ===== EXPERIENCE TABS ===== */
-function switchExp(i) {
-  document.querySelectorAll('.exp-tab').forEach((t,j) => t.classList.toggle('active', j===i));
-  document.querySelectorAll('.exp-panel').forEach((p,j) => p.classList.toggle('active', j===i));
+/* EXPERIENCE TABS */
+function switchExp(i){
+  document.querySelectorAll('.exp-tab').forEach((t,j)=>t.classList.toggle('active',j===i));
+  document.querySelectorAll('.exp-panel').forEach((p,j)=>p.classList.toggle('active',j===i));
 }
 </script>
 </body>
