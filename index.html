@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老李炭火铜锅 — 三代人的老味道</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --red: #C41E3A;
+    --red-dark: #8B0000;
+    --gold: #D4A843;
+    --gold-light: #F5E6C8;
+    --cream: #FFF8F0;
+    --charcoal: #1A1A1A;
+    --gray: #666;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+    color: var(--charcoal);
+    background: var(--cream);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #1A0A0A 0%, #2D0F0F 40%, #3D1515 100%);
+    color: var(--white);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(196,30,58,0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.15) 0%, transparent 50%);
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.5rem 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: var(--red-dark); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+
+  /* ── Section shared ── */
+  section { padding: 6rem 2rem; }
+  .section-tag {
+    display: inline-block;
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--gray);
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.8;
+  }
+
+  /* ── About ── */
+  .about {
+    background: var(--white);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .about-text p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  .about-visual {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #3D1515 0%, #5C2020 50%, #8B3535 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::after {
+    content: '铜锅';
+    font-size: 5rem;
+    color: rgba(212,168,67,0.2);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Dishes ── */
+  .dishes {
+    background: var(--cream);
+    text-align: center;
+  }
+  .dishes .section-desc { margin: 0 auto 4rem; }
+  .dish-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .dish-card {
+    background: var(--white);
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.25s;
+  }
+  .dish-card:hover { transform: translateY(-4px); }
+  .dish-visual {
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .dish-visual.v1 { background: linear-gradient(135deg, #FFF0E0, #FFE4C4); }
+  .dish-visual.v2 { background: linear-gradient(135deg, #FFE8E0, #FFD4C4); }
+  .dish-visual.v3 { background: linear-gradient(135deg, #E8F5E0, #D4E8C4); }
+  .dish-info { padding: 1.5rem; }
+  .dish-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .dish-info .price {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .dish-info p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+
+  /* ── Atmosphere ── */
+  .atmosphere {
+    background: var(--charcoal);
+    color: var(--white);
+    text-align: center;
+  }
+  .atmosphere .section-tag { color: var(--gold); }
+  .atmosphere .section-desc { color: rgba(255,255,255,0.55); margin: 0 auto 3rem; }
+  .vibe-grid {
+    display: flex;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .vibe-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .vibe-item .emoji { font-size: 2rem; margin-bottom: 1rem; }
+  .vibe-item h4 { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .vibe-item p { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+  /* ── Info ── */
+  .info {
+    background: var(--white);
+    text-align: center;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 3rem auto 0;
+  }
+  .info-block h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+  }
+  .info-block p { font-size: 0.95rem; color: var(--charcoal); line-height: 1.8; }
+  .info-block .big { font-size: 1.3rem; font-weight: 700; color: var(--charcoal); }
+
+  /* ── CTA ── */
+  .cta-bar {
+    background: var(--red);
+    color: var(--white);
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  .cta-bar h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+  .cta-bar p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 2rem;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--white);
+    color: var(--red);
+    padding: 1rem 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .cta-button:hover { opacity: 0.9; }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .dish-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">SINCE 1987</div>
+    <h1>老李<em>炭火</em>铜锅</h1>
+    <p class="subtitle">
+      手切鲜羊肉 · 老北京麻酱 · 三代人传下来的配方<br>
+      锅底滚起来那一刻，你就知道为什么有人开两小时车也要来。
+    </p>
+    <a href="#info" class="hero-cta">☎ 今晚订位</a>
+  </div>
+  <div class="scroll-hint">▼ 往下看</div>
+</header>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="section-tag">我们是谁</span>
+      <h2 class="section-title">锅是老的香</h2>
+      <p>1987 年，老李在胡同口支了第一口铜锅。那时候炭火要自己劈，麻酱要自己澥，羊肉要自己片。三十多年过去，胡同拆了，店搬了三回，但锅没换过——紫铜锅越养越亮，汤底越煮越醇。</p>
+      <p>现在的老李炭火铜锅开在幸福路 127 号，老板是老李的儿子小斌。手艺是老爷子手把手教的，麻酱配方还是那张泛黄的纸。每周二四六进货，羊肉只选苏尼特 6 月龄羔羊后腿，冻超过 4 小时的不用。</p>
+    </div>
+    <div class="about-visual"></div>
+  </div>
+</section>
+
+<!-- ═══════════ DISHES ═══════════ -->
+<section class="dishes">
+  <span class="section-tag">招牌</span>
+  <h2 class="section-title">来的人都会点的三样</h2>
+  <p class="section-desc">菜单上 60 多样东西，但老客坐下不看菜单。这三样是吃到一半一定会加单的。</p>
+  <div class="dish-grid">
+    <div class="dish-card">
+      <div class="dish-visual v1">🥩</div>
+      <div class="dish-info">
+        <h3>手切鲜羊后腿</h3>
+        <div class="price">¥68 / 份</div>
+        <p>苏尼特羔羊后腿肉，当天现切，立盘不倒。下锅涮 8 秒，入口是奶香不是膻。</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-visual v2">🍲</div>
+      <div class="dish-info">
+        <h3>老北京爆肚</h3>
+        <div class="price">¥42 / 份</div>
+        <p>鲜毛肚切丝，沸汤里七上八下。蘸麻酱咬下去，脆得能听到响。</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-visual v3">🥬</div>
+      <div class="dish-info">
+        <h3>自制酸菜</h3>
+        <div class="price">¥18 / 份</div>
+        <p>东北秋白菜自己腌的，酸得干净不齁嗓子。腊月里腌，吃到开春正好。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ATMOSPHERE ═══════════ -->
+<section class="atmosphere">
+  <span class="section-tag">什么样的店</span>
+  <h2 class="section-title">不是那种拍照的网红店</h2>
+  <p class="section-desc">这里没有霓虹灯、没有墙上的文案、没有"出片角落"。只有铜锅、炭火、和满屋子的烟火气。</p>
+  <div class="vibe-grid">
+    <div class="vibe-item">
+      <div class="emoji">🔥</div>
+      <h4>真炭火</h4>
+      <p>不用电磁炉，炭烧到发白才上桌</p>
+    </div>
+    <div class="vibe-item">
+      <div class="emoji">👨‍👩‍👧</div>
+      <h4>家庭作坊</h4>
+      <p>后厨是老板和他爸，前台是他媳妇</p>
+    </div>
+    <div class="vibe-item">
+      <div class="emoji">🍶</div>
+      <h4>自带酒水 OK</h4>
+      <p>不收开瓶费，隔壁小卖部买二锅头都行</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INFO ═══════════ -->
+<section class="info" id="info">
+  <span class="section-tag">来找我们</span>
+  <h2 class="section-title">订位 & 地址</h2>
+  <div class="info-grid">
+    <div class="info-block">
+      <h4>📍 地址</h4>
+      <p>幸福路 127 号<br>（地铁 3 号线幸福路站 C 口出，<br>步行 3 分钟）</p>
+    </div>
+    <div class="info-block">
+      <h4>🕐 营业时间</h4>
+      <p>周一至周五 17:00–23:00<br>周六日 11:00–23:00<br><span style="color:var(--red)">周二休息</span></p>
+    </div>
+    <div class="info-block">
+      <h4>☎️ 订位电话</h4>
+      <p class="big">138-XXXX-XXXX</p>
+      <p>7 人以上请提前一天<br>包间只有两间，手慢无</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<div class="cta-bar">
+  <h2>今晚的锅底已经烧上了</h2>
+  <p>打电话订位，报"公众号来的"送一份自制酸菜</p>
+  <a href="#" class="cta-button">☎ 马上订位</a>
+</div>
+
+<footer>
+  © 老李炭火铜锅 · 幸福路 127 号 · 三代人的老味道
+</footer>
+
+</body>
+</html>
